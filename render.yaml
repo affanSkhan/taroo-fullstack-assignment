@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: taroo-task-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci --prefix task-api
+    startCommand: npm start --prefix task-api
+    healthCheckPath: /health
+    autoDeployTrigger: commit
