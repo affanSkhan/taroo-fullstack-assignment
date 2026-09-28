@@ -3,7 +3,7 @@ services:
     name: taroo-task-api
     runtime: node
     plan: free
-    buildCommand: npm ci --prefix task-api
+    buildCommand: npm install --prefix task-api
     startCommand: npm start --prefix task-api
     healthCheckPath: /health
     autoDeployTrigger: commit
