@@ -23,7 +23,7 @@ Prerequisite: Node.js 18+.
 
 ```bash
 cd task-api
-npm ci
+npm install
 npm test
 npm run coverage
 npm start
@@ -72,11 +72,11 @@ npm run coverage
 Jest enforces minimum global coverage so future changes cannot silently reduce test quality.
 
 ## Deployment
-`render.yaml` provides a Render web-service definition. The API reads `PORT` and exposes `/health` for health checks.
+A Render Blueprint is included in `render.yaml`. The service is configured as a Node web service and exposes `/health` for application-level health checks.
 
 Render settings:
 - Root directory: repository root
-- Build: `npm ci --prefix task-api`
+- Build: `npm install --prefix task-api`
 - Start: `npm start --prefix task-api`
 
 ## Reviewer guide
