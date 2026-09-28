@@ -2,6 +2,18 @@
 
 Production-minded solution for the **The Untested API** exercise.
 
+## Live API
+
+**Live API:** https://affankhan--6cb5d158bb3711f194981607ee4eb77e.web.val.run
+
+Verified live endpoints:
+- `GET /health` → `200 {"status":"ok"}`
+- `GET /tasks` → `200 []` on a fresh database
+- `GET /tasks/stats` → `200` with task counters
+- Unknown routes → JSON `404`
+
+The live deployment uses Val Town's public HTTP runtime with a project-scoped SQLite database. It mirrors the assignment API behavior and keeps data persistent across process restarts.
+
 ## Included
 - Unit tests for task business logic
 - Supertest integration tests for every endpoint
@@ -12,7 +24,8 @@ Production-minded solution for the **The Untested API** exercise.
 - `/health` endpoint for deployment checks
 - Jest coverage thresholds
 - GitHub Actions CI
-- Render deployment configuration
+- Render deployment configuration for conventional Node hosting
+- Verified live API deployment
 - Reviewer-facing solution notes
 
 ## Stack
@@ -29,7 +42,7 @@ npm run coverage
 npm start
 ```
 
-The API uses an in-memory store, so data resets whenever the process restarts.
+The repository implementation uses an in-memory store, so local API data resets whenever the process restarts. The deployed live mirror uses SQLite so the public API remains persistent.
 
 ## API
 
@@ -69,10 +82,17 @@ npm test
 npm run coverage
 ```
 
+The verified GitHub Actions run passed **43/43 tests** across **3/3 suites** with:
+
+- Statements: **97.31%**
+- Branches: **92.64%**
+- Functions: **94.28%**
+- Lines: **97.60%**
+
 Jest enforces minimum global coverage so future changes cannot silently reduce test quality.
 
 ## Deployment
-A Render Blueprint is included in `render.yaml`. The service is configured as a Node web service and exposes `/health` for application-level health checks.
+A Render Blueprint is included in `render.yaml` for conventional Node hosting. Render's connected workspace is currently build-quota constrained, so the live submission endpoint is hosted separately on Val Town and has been verified directly.
 
 Render settings:
 - Root directory: repository root
@@ -82,3 +102,4 @@ Render settings:
 ## Reviewer guide
 - `BUG_REPORT.md` — discovered defects, reproduction and fixes
 - `SOLUTION_NOTES.md` — design decisions, trade-offs and production questions
+- `TEST_REPORT.md` — observed CI test and coverage results
